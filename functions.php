@@ -3,7 +3,9 @@
 /* Connexion à la BDD - 3/10 - 20 min */
 
 
-/* Récupérer les articles qui sont dans la bdd */
+/* Récupérer les articles qui sont dans la bdd - 5/10 - 30 min*/
+
+
 
 /* récuperation article selon son ID - 3/10 - 15 min  */
 

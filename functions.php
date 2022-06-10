@@ -2,16 +2,24 @@
 
 /* Récupérer les articles qui sont dans la bdd - 5/10 - 30 min*/
 
+            // création de la requete pour aller chercher les informations dans la base de données
+            $requetearticles = 'SELECT * FROM articles'; 
 
-            $requetearticles = 'SELECT * FROM articles';
+            // déclaration de la variable $resultatsrequetearticles et assignation de la requete article au format pdo 
             $resultatsrequetearticles = $pdo->query($requetearticles);
-            $listearticle = array();
+            
+            // création du tableau vide pour la variable $listearticle
+            $listearticle = array();  
 
-            while($nosarticles = $resultatsrequetearticles->fetch()) {
+            // tant que notre requête à la bdd arrive à récupérer des données, on les assigne à la variable $nosarticles
+            while($nosarticles = $resultatsrequetearticles->fetch()) { 
+                // on insère le contenu de la variable $nosarticles dans le tableau $listearticle
                 $listearticle[] = $nosarticles;
             }
 
-            var_dump($listearticle);
+            // affiche les infos de la variable $listearticle
+            var_dump($listearticle); 
+
 
 /* récuperation article selon son ID - 3/10 - 15 min  */
 
@@ -22,9 +30,18 @@
 
 
 
-/* création du panier dans la session, si le panier n'existe pas car $_SESSION['cart'] retourne NULL alors on créé le panier - 5/10 - 45 min */
+/* (initialiser) création du panier (qui est un tableau) dans la session, si le panier n'existe pas car $_SESSION['cart'] retourne NULL alors on créé le panier - 5/10 - 45 min */
 
-
+function creationPanier(){
+    if (!isset($_SESSION['panier'])){
+       $_SESSION['panier']=array();
+       $_SESSION['panier']['nomProduit'] = array();
+       $_SESSION['panier']['quantitéProduit'] = array();
+       $_SESSION['panier']['prixProduit'] = array();
+       $_SESSION['panier']['verrou'] = false;
+    }
+    return true;
+ }
 
 /* on ajoute au panier en vérifiant que le panier existe, s'il existe puis si le produit est déjà présent dans le panier on augmente la quantité, sinon on ajoute le produit - 6/10 - 1h*/
 
@@ -58,8 +75,12 @@
 
 
 
-/* Vide le panier - 3/10 - 15 min */
+/* Vider le panier qui est un tableau - 3/10 - 15 min */
 
+session_destroy();
+  echo ('après Destroy:');
+   echo    $_SESSION[''],"
+";
 
 
 /* restreint l'accès à une page aux personnes connectées - 6/10 - 1h */

@@ -7,7 +7,7 @@
             $resultatsrequetearticles = $pdo->query($requetearticles);
             $listearticle = array();
 
-            while($nosarticles = $listearticle->fetch()) {
+            while($nosarticles = $resultatsrequetearticles->fetch()) {
                 $listearticle[] = $nosarticles;
             }
 

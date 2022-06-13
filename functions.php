@@ -28,6 +28,10 @@
 
 /* on génère notre div spécifique à un produit sur la page du produit - 2/10 - 15 min */
 
+<div class="articles">
+  <p>Voici un paragraphe très intéressant inscrit dans une boîte
+  avec une ombre.</p>
+</div>
 
 
 /* (initialiser) création du panier (qui est un tableau) dans la session, si le panier n'existe pas car $_SESSION['cart'] retourne NULL alors on créé le panier - 5/10 - 45 min */
@@ -77,18 +81,17 @@ function creationPanier(){
 
 /* Vider le panier qui est un tableau - 3/10 - 15 min */
 
-session_destroy();
-  echo ('après Destroy:');
-   echo    $_SESSION[''],"
-";
-
-
+function viderPanier(){
+   $_SESSION['panier']=array();
+}
 /* restreint l'accès à une page aux personnes connectées - 6/10 - 1h */
 
 
 
 /* génère une chaine aléatoire - 3/10 - 15 min*/
 
+$Random_str = uniqid();  
+echo $Random_str;
 
 /* enregistre l'adresse du client - 4/10 - 15 min */
 

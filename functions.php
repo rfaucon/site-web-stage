@@ -2,20 +2,6 @@
 
 /* vérifier si session php existe, sinon on l'initialise */
 
-session_start();
-
-function sessionExiste(){
-   if (!isset($_SESSION['prenom'])){
-      $_SESSION['prenom']=array();
-   }else{
-      function initialisationSession(){
-      $_SESSION['prenom']=array();
-      }
-   }
-}
-
-
-
 if (session_status() === PHP_SESSION_NONE) {
    session_start();
 }

@@ -81,7 +81,34 @@ while (count($articlesaccueil) > 0) {
 /* récuperation article selon son ID - 3/10 - 15 min  */
 
 
+/* on génère notre div spécifique à un produit sur la page du produit */
+function singleProductPage($product)
+{ ?>
 
+    <section class=" mb-5 vh-100 headersection d-flex justify-content-evenly align-items-center flex-column">
+        <h1 class="headersection__title"><?= $product['nom'] ?></h1>
+        <a href="#theproduct" class="btn btn-warning">Je le personnalise</a>
+    </section>
+
+    </header>
+    <main class="productpage row mt-3" id="theproduct">
+        <section class="product productpage__photo col-md-6">
+            <img class="" src="images/<?= $product['image'] ?>" alt="Ours en peluche">
+        </section>
+
+        <section class="productpage__details col-md-6">
+            <h2 class="productpage__subtitle"><?= $product['nom'] ?><br></h2>
+            <p class="productpage__price"><span>Prix</span><br><?= $product['prix'] ?>€</p>
+
+            <p class="productpage__description"><span>Description</span><br><?= $product['description_detaillee'] ?></p>
+            <form class="col-md-5 product__cta" action="cart.php" method="POST">
+                <input type="hidden" name="productId" value="<?= $product['id'] ?>">
+                <input class="mt-3 btn btn-warning col-md-12" type="submit" value="Je l'adopte">
+                <?php afficherStock($product) ?>
+            </form>
+        </section>
+    </main>
+    <?php }
 
 /* on génère notre div spécifique à un produit sur la page du produit - 2/10 - 15 min */
 

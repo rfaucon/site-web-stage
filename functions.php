@@ -90,8 +90,11 @@ function viderPanier(){
 
 /* génère une chaine aléatoire - 3/10 - 15 min*/
 
-$Random_str = uniqid();  
-echo $Random_str;
+function chaineAleatoire($length){
+   $random_str = uniqid();  
+return substr($random_str, 0, $length);
+}
+
 
 /* enregistre l'adresse du client - 4/10 - 15 min */
 

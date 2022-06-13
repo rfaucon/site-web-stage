@@ -37,9 +37,6 @@ while ($nosarticles = $resultatarticles3->fetch()) {
 
 
 
-
-/* récuperation article selon son3I - 3/10 - 15 min  */
-
 /* on génére nos div produit de chaque gamme sur la page d'accueil */
 
 
@@ -76,6 +73,19 @@ while (count($articlesaccueil) > 0) {
 
 /* récuperation article selon son ID - 3/10 - 15 min  */
 
+
+function getArticleFromID($id)
+{
+    global $allarticles;
+    $products = $allarticles;
+    foreach ($products as $product) {
+        if ($product['id'] == $id) {
+            $selectedProduct = $product;
+            break;
+        }
+    }
+    return $selectedProduct;
+}
 
 /* on génère notre div spécifique à un produit sur la page du produit */
 function singleProductPage($product)

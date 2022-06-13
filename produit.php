@@ -14,7 +14,7 @@ include 'functions.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <title>Hold my bear - La boutique des ours en peluche</title>
+    <title><?= $nomdusite ;?> Page produit</title>
 </head>
 
 <body>

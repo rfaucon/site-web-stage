@@ -6,6 +6,10 @@ if (session_status() === PHP_SESSION_NONE) {
    session_start();
 }
 
+/* nom de mon site */
+
+$nomdusite = "Esprit Moto";
+
 
 /* création d'un tableau qui contiendra les produits pour la page d'accueil */
 
@@ -35,80 +39,74 @@ while ($nosarticles = $resultatarticles3->fetch()) {
 }
 
 
+/* Récupérer les articles qui sont dans la bdd - 5/10 - 30 min*/
+
+
+// création de la requete pour aller chercher les informations dans la base de données
+$requetearticles = 'SELECT * FROM articles';
+
+
+
+// création du tableau vide pour la variable $listearticle
+$listearticle = array();
+// déclaration de la variable $resultatsrequetearticles et assignation de la requete article au format pdo 
+$resultatsrequetearticles = $pdo->query($requetearticles);
+
+// tant que notre requête à la bdd arrive à récupérer des données, on les assigne à la variable $nosarticles
+while ($nosarticles = $resultatsrequetearticles->fetch()) {
+// on insère le contenu de la variable $nosarticles dans le tableau $listearticle
+   $listearticle[] = $nosarticles;
+}
 
 
 
 /* récuperation article selon son id - 3/10 - 15 min  */
 
-if ($_POST['id']=="ok") {
-
+function getArticleFromId(){
+   
 }
+
 
 /* on génére nos div produit de chaque gamme sur la page d'accueil */
 
 
-function divproduitaccueil(){
+function divproduitaccueil()
+{
    global $articlesaccueil;
-while (count($articlesaccueil) > 0) {
-    $product = array_shift($articlesaccueil); ?>
-    <section class="product col-md-3 text-center shadow p-3 mt-5 mb-5 bg-white rounded">
+   while (count($articlesaccueil) > 0) {
+      $product = array_shift($articlesaccueil); ?>
+      <section class="product col-md-3 text-center shadow p-3 mt-5 mb-5 bg-white rounded">
 
-        <article class="product__nameandprice">
+         <article class="product__nameandprice">
             <h2 class="product__title">Moto <?= $product['nom'] ?></h2>
             <p><?= $product['prix'] ?>€</p>
             <img src="images/<?= $product['image'] ?>" alt="Moto <?= $product['nom'] ?>">
             <p><?= $product['description'] ?></p>
             <div class="form__container row d-flex justify-content-center">
-                <form class="col-md-7 product__cta" action="product.php" method="POST">
-                    <input type="hidden" name="productId" value="<?= $product['id'] ?>">
-                    <input class="mt-3 btn btn-warning" type="submit" value="Je la découvre">
-                </form>
-                <form class="col-md-5 product__cta" action="cart.php" method="POST">
-                    <input type="hidden" name="productId" value="<?= $product['id'] ?>">
-                    <input class="mt-3 btn btn-warning" type="submit" value="Je l'adopte">
-                </form>
-                <?php 
-                afficherStock($product);
-                ?>
+               <form class="col-md-7 product__cta" action="produit.php" method="POST">
+                  <input type="hidden" name="productId" value="<?= $product['id'] ?>">
+                  <input class="mt-3 btn btn-warning" type="submit" value="Je la découvre">
+               </form>
+               <form class="col-md-5 product__cta" action="panier.php" method="POST">
+                  <input type="hidden" name="productId" value="<?= $product['id'] ?>">
+                  <input class="mt-3 btn btn-warning" type="submit" value="Je l'adopte">
+               </form>
+               <?php
+               afficherStock($product);
+               ?>
             </div>
-        </article>
+         </article>
 
-    </section>
-<?php } }
+      </section>
+   <?php }
+}
 
 
 
 /* récuperation article selon son ID - 3/10 - 15 min  */
 
 
-/* on génère notre div spécifique à un produit sur la page du produit */
-function singleProductPage($product)
-{ ?>
 
-    <section class=" mb-5 vh-100 headersection d-flex justify-content-evenly align-items-center flex-column">
-        <h1 class="headersection__title"><?= $product['nom'] ?></h1>
-        <a href="#theproduct" class="btn btn-warning">Je le personnalise</a>
-    </section>
-
-    </header>
-    <main class="productpage row mt-3" id="theproduct">
-        <section class="product productpage__photo col-md-6">
-            <img class="" src="images/<?= $product['image'] ?>" alt="Ours en peluche">
-        </section>
-
-        <section class="productpage__details col-md-6">
-            <h2 class="productpage__subtitle"><?= $product['nom'] ?><br></h2>
-            <p class="productpage__price"><span>Prix</span><br><?= $product['prix'] ?>€</p>
-
-            <p class="productpage__description"><span>Description</span><br><?= $product['description_detaillee'] ?></p>
-            <form class="col-md-5 product__cta" action="cart.php" method="POST">
-                <input type="hidden" name="productId" value="<?= $product['id'] ?>">
-                <input class="mt-3 btn btn-warning col-md-12" type="submit" value="Je l'adopte">
-                <?php afficherStock($product) ?>
-            </form>
-        </section>
-    </main>
-    <?php }
 
 /* on génère notre div spécifique à un produit sur la page du produit - 2/10 - 15 min */
 
@@ -200,15 +198,14 @@ function chaineAleatoire($length)
 
 /* affiche le stock d'un produit 3/10 - 20 min*/
 
-function afficherStock($product){
+function afficherStock($product)
+{
 
    if ($product['stock'] < 1) { ?><h3 class="product__stock">Rupture de stock</h3>
-      <?php }
-     else if ($product['stock'] > 1) { ?><h3 class="product__stock"><?= $product['stock'] ?> motos en stock.</h3>
-      <?php } else
-      { ?>
-         <h3 class="product__stock"><?= $product['stock'] ?> moto en stock.</h3>
-      <?php } 
+   <?php } else if ($product['stock'] > 1) { ?><h3 class="product__stock"><?= $product['stock'] ?> motos en stock.</h3>
+   <?php } else { ?>
+      <h3 class="product__stock"><?= $product['stock'] ?> moto en stock.</h3>
+<?php }
 }
 
 /* affiche le montant des frais de port sur la page de détail d'une commande - 4/10 - 30 min*/

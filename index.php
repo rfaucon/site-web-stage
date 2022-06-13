@@ -17,7 +17,7 @@ include 'functions.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <title>Esprit moto - Accueil</title>
+    <title><?= $nomdusite ;?> - Accueil</title>
 </head>
 
 <body>
@@ -28,7 +28,7 @@ include 'functions.php';
             <div class="container collapse navbar-collapse">
 
                 <div class="col-md-3 d-flex justify-content-center">
-                    <a class="navbar-brand" href="./">Esprit moto</a>
+                    <a class="navbar-brand" href="./"><?= $nomdusite ;?></a>
                 </div>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#monMenu" aria-controls="monMenu" aria-label="Menu pour mobile">

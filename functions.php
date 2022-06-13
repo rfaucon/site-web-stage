@@ -1,5 +1,20 @@
 <?php
 
+/* vérifier si session php existe, sinon on l'initialise */
+
+session_start();
+
+function sessionExiste(){
+   if (!isset($_SESSION['prenom'])){
+      $_SESSION['prenom']=array();
+   }else{
+      function initialisationSession(){
+      $_SESSION['prenom']=array();
+      }
+   }
+}
+
+
 /* Récupérer les articles qui sont dans la bdd - 5/10 - 30 min*/
 
             // création de la requete pour aller chercher les informations dans la base de données
@@ -18,7 +33,7 @@
             }
 
             // affiche les infos de la variable $listearticle
-            var_dump($listearticle); 
+            // var_dump($listearticle); 
 
 
 /* récuperation article selon son ID - 3/10 - 15 min  */
@@ -28,10 +43,7 @@
 
 /* on génère notre div spécifique à un produit sur la page du produit - 2/10 - 15 min */
 
-<div class="articles">
-  <p>Voici un paragraphe très intéressant inscrit dans une boîte
-  avec une ombre.</p>
-</div>
+
 
 
 /* (initialiser) création du panier (qui est un tableau) dans la session, si le panier n'existe pas car $_SESSION['cart'] retourne NULL alors on créé le panier - 5/10 - 45 min */

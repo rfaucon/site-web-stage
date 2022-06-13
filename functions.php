@@ -27,6 +27,18 @@ if (session_status() === PHP_SESSION_NONE) {
             // var_dump($listearticle); 
 
 
+/* création d'un tableau qui contiendra les produits pour la page d'accueil */
+
+$articlesaccueil = array();
+
+
+/* requete pour récuperer les articles par gammes */
+
+$queryaccueilcategorie1 = 'SELECT * FROM articles WHERE id_gamme = 1 ORDER BY rand() LIMIT 1';
+$queryaccueilcategorie2 = 'SELECT * FROM articles WHERE id_gamme = 2 ORDER BY rand() LIMIT 1';
+$queryaccueilcategorie3 = 'SELECT * FROM articles WHERE id_gamme = 3 ORDER BY rand() LIMIT 1';
+
+
 /* récuperation article selon son ID - 3/10 - 15 min  */
 
 

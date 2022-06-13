@@ -8,23 +8,26 @@ if (session_status() === PHP_SESSION_NONE) {
 
 /* Récupérer les articles qui sont dans la bdd - 5/10 - 30 min*/
 
-            // création de la requete pour aller chercher les informations dans la base de données
-            $requetearticles = 'SELECT * FROM articles'; 
 
-            // déclaration de la variable $resultatsrequetearticles et assignation de la requete article au format pdo 
-            $resultatsrequetearticles = $pdo->query($requetearticles);
-            
-            // création du tableau vide pour la variable $listearticle
-            $listearticle = array();  
+// création du tableau vide pour la variable $listearticle
+$listearticle = array();
 
-            // tant que notre requête à la bdd arrive à récupérer des données, on les assigne à la variable $nosarticles
-            while($nosarticles = $resultatsrequetearticles->fetch()) { 
-                // on insère le contenu de la variable $nosarticles dans le tableau $listearticle
-                $listearticle[] = $nosarticles;
-            }
+// création de la requete pour aller chercher les informations dans la base de données
+$requetearticles = 'SELECT * FROM articles';
 
-            // affiche les infos de la variable $listearticle
-            // var_dump($listearticle); 
+// déclaration de la variable $resultatsrequetearticles et assignation de la requete article au format pdo 
+$resultatsrequetearticles = $pdo->query($requetearticles);
+
+
+
+// tant que notre requête à la bdd arrive à récupérer des données, on les assigne à la variable $nosarticles
+while ($nosarticles = $resultatsrequetearticles->fetch()) {
+   // on insère le contenu de la variable $nosarticles dans le tableau $listearticle
+   $listearticle[] = $nosarticles;
+}
+
+// affiche les infos de la variable $listearticle
+// var_dump($listearticle); 
 
 
 /* création d'un tableau qui contiendra les produits pour la page d'accueil */
@@ -38,8 +41,27 @@ $queryaccueilcategorie1 = 'SELECT * FROM articles WHERE id_gamme = 1 ORDER BY ra
 $queryaccueilcategorie2 = 'SELECT * FROM articles WHERE id_gamme = 2 ORDER BY rand() LIMIT 1';
 $queryaccueilcategorie3 = 'SELECT * FROM articles WHERE id_gamme = 3 ORDER BY rand() LIMIT 1';
 
+$resultatarticles1 = $pdo->query($queryaccueilcategorie1);
+$resultatarticles2 = $pdo->query($queryaccueilcategorie2);
+$resultatarticles3 = $pdo->query($queryaccueilcategorie3);
 
-/* récuperation article selon son ID - 3/10 - 15 min  */
+while ($nosarticles = $resultatarticles1->fetch()) {
+   $articlesaccueil[] = $nosarticles;
+}
+
+while ($nosarticles = $resultatarticles2->fetch()) {
+   $articlesaccueil[] = $nosarticles;
+}
+
+while ($nosarticles = $resultatarticles3->fetch()) {
+   $articlesaccueil[] = $nosarticles;
+}
+
+var_dump($articlesaccueil);
+
+
+
+/* récuperation article selon son3I - 3/10 - 15 min  */
 
 
 
@@ -51,16 +73,17 @@ $queryaccueilcategorie3 = 'SELECT * FROM articles WHERE id_gamme = 3 ORDER BY ra
 
 /* (initialiser) création du panier (qui est un tableau) dans la session, si le panier n'existe pas car $_SESSION['cart'] retourne NULL alors on créé le panier - 5/10 - 45 min */
 
-function creationPanier(){
-    if (!isset($_SESSION['panier'])){
-       $_SESSION['panier']=array();
-       $_SESSION['panier']['nomProduit'] = array();
-       $_SESSION['panier']['quantitéProduit'] = array();
-       $_SESSION['panier']['prixProduit'] = array();
-       $_SESSION['panier']['verrou'] = false;
-    }
-    return true;
- }
+function creationPanier()
+{
+   if (!isset($_SESSION['panier'])) {
+      $_SESSION['panier'] = array();
+      $_SESSION['panier']['nomProduit'] = array();
+      $_SESSION['panier']['quantitéProduit'] = array();
+      $_SESSION['panier']['prixProduit'] = array();
+      $_SESSION['panier']['verrou'] = false;
+   }
+   return true;
+}
 
 /* on ajoute au panier en vérifiant que le panier existe, s'il existe puis si le produit est déjà présent dans le panier on augmente la quantité, sinon on ajoute le produit - 6/10 - 1h*/
 
@@ -90,14 +113,15 @@ function creationPanier(){
 
 
 
-/* affiche le prix total du panier - 4/10 - 20 min */ 
+/* affiche le prix total du panier - 4/10 - 20 min */
 
 
 
 /* Vider le panier qui est un tableau - 3/10 - 15 min */
 
-function viderPanier(){
-   $_SESSION['panier']=array();
+function viderPanier()
+{
+   $_SESSION['panier'] = array();
 }
 /* restreint l'accès à une page aux personnes connectées - 6/10 - 1h */
 
@@ -105,9 +129,10 @@ function viderPanier(){
 
 /* génère une chaine aléatoire - 3/10 - 15 min*/
 
-function chaineAleatoire($length){
-   $random_str = uniqid();  
-return substr($random_str, 0, $length);
+function chaineAleatoire($length)
+{
+   $random_str = uniqid();
+   return substr($random_str, 0, $length);
 }
 
 
@@ -137,6 +162,3 @@ return substr($random_str, 0, $length);
 
 
 /* on sauvegarde l'adresse qui a été modifiée - 4/10 - 20 min*/
-
-
-?>

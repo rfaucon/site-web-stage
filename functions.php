@@ -6,29 +6,6 @@ if (session_status() === PHP_SESSION_NONE) {
    session_start();
 }
 
-/* Récupérer les articles qui sont dans la bdd - 5/10 - 30 min*/
-
-
-// création du tableau vide pour la variable $listearticle
-$listearticle = array();
-
-// création de la requete pour aller chercher les informations dans la base de données
-$requetearticles = 'SELECT * FROM articles';
-
-// déclaration de la variable $resultatsrequetearticles et assignation de la requete article au format pdo 
-$resultatsrequetearticles = $pdo->query($requetearticles);
-
-
-
-// tant que notre requête à la bdd arrive à récupérer des données, on les assigne à la variable $nosarticles
-while ($nosarticles = $resultatsrequetearticles->fetch()) {
-   // on insère le contenu de la variable $nosarticles dans le tableau $listearticle
-   $listearticle[] = $nosarticles;
-}
-
-// affiche les infos de la variable $listearticle
-// var_dump($listearticle); 
-
 
 /* création d'un tableau qui contiendra les produits pour la page d'accueil */
 
@@ -62,6 +39,35 @@ var_dump($articlesaccueil);
 
 
 /* récuperation article selon son3I - 3/10 - 15 min  */
+
+/* on génére nos div produit de chaque gamme sur la page d'accueil */
+
+/* <section class="product col-md-3 text-center shadow p-3 mb-5 bg-white rounded">
+
+                    <article class="product__nameandprice">
+                        <h2 class="product__title">Ours <?= $product['nom'] ?></h2>
+                        <p><?= $product['prix'] ?>€</p>
+                        <img src="images/<?= $product['image'] ?>" alt="Ours en peluche en coton">
+                        <p><?= $product['description'] ?></p>
+                        <div class="form__container row d-flex justify-content-center">
+                            <form class="col-md-7 product__cta" action="product.php" method="POST">
+                                <input type="hidden" name="productId" value="<?= $product['id'] ?>">
+                                <input class="mt-3 btn btn-warning" type="submit" value="Je le découvre">
+                            </form>
+                            <form class="col-md-5 product__cta" action="cart.php" method="POST">
+                                <input type="hidden" name="productId" value="<?= $product['id'] ?>">
+                                <input class="mt-3 btn btn-warning" type="submit" value="Je l'adopte">
+                            </form>
+                            <?php displayStock($product) ?>
+                        </div>
+                    </article>
+
+</section>
+
+*/
+
+
+/* récuperation article selon son ID - 3/10 - 15 min  */
 
 
 

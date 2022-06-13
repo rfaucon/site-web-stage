@@ -1,5 +1,10 @@
 <?php
 
+
+if (session_status() === PHP_SESSION_NONE) {
+   session_start();
+}
+
 /* Récupérer les articles qui sont dans la bdd - 5/10 - 30 min*/
 
             // création de la requete pour aller chercher les informations dans la base de données

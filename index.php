@@ -17,7 +17,7 @@ include 'functions.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <title>titre onglet</title>
+    <title>Esprit moto - Accueil</title>
 </head>
 
 <body>
@@ -28,7 +28,7 @@ include 'functions.php';
             <div class="container collapse navbar-collapse">
 
                 <div class="col-md-3 d-flex justify-content-center">
-                    <a class="navbar-brand" href="./">titre page qui s'affiche sur la page</a>
+                    <a class="navbar-brand" href="./">Esprit moto</a>
                 </div>
 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#monMenu" aria-controls="monMenu" aria-label="Menu pour mobile">
@@ -52,7 +52,7 @@ include 'functions.php';
         </nav>
 
         <section class="headersection vh-100 d-flex justify-content-evenly align-items-center flex-column">
-            <h1 class="headersection__title">quelle est cette boutique?</h1>
+            <h1 class="headersection__title">Professionnels de la moto</h1>
             <div>
                 <a href="#main" class="btn btn-warning">Je veux voir des motos</a>
                 <a href="gamme.php" class="btn btn-success">Je découvre toutes les gammes</a>
@@ -61,15 +61,16 @@ include 'functions.php';
 
     </header>
 
-    <main class="container-fluid homepage mt-5 vh-100 d-flex align-items-center" id="main">
-        <div class="row d-flex justify-content-around align-items-center">
-on vient affiche notre div d'un produit ici
-
+    <main class="container-fluid homepage mt-5 vh-70 d-flex align-items-center" id="main">
+        <div class="row d-flex justify-content-around align-items-center mt-5">
+            <?php
+            divproduitaccueil();
+            ?>
         </div>
     </main>
 
     <footer class="footer row d-flex justify-content-center text-center bg-dark mt-5 pt-3 pb-3 text-white">
-        <h3 class="footer__h3">titre bas de page</h3>
+        <h3 class="footer__h3">Esprit moto, la réference de la moto en France.</h3>
     </footer>
     <!-- script pour le menu de bootstrap -->
 

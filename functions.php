@@ -34,7 +34,7 @@ while ($nosarticles = $resultatarticles3->fetch()) {
    $articlesaccueil[] = $nosarticles;
 }
 
-var_dump($articlesaccueil);
+
 
 
 
@@ -42,30 +42,35 @@ var_dump($articlesaccueil);
 
 /* on génére nos div produit de chaque gamme sur la page d'accueil */
 
-while (count($tableauarticles) > 0) {
-    $product = array_shift($tableauarticles); ?>
-    <section class="product col-md-3 text-center shadow p-3 mb-5 bg-white rounded">
+
+function divproduitaccueil(){
+   global $articlesaccueil;
+while (count($articlesaccueil) > 0) {
+    $product = array_shift($articlesaccueil); ?>
+    <section class="product col-md-3 text-center shadow p-3 mt-5 mb-5 bg-white rounded">
 
         <article class="product__nameandprice">
             <h2 class="product__title">Moto <?= $product['nom'] ?></h2>
             <p><?= $product['prix'] ?>€</p>
-            <img src="images/<?= $product['image'] ?>" alt="Ours en peluche en coton">
+            <img src="images/<?= $product['image'] ?>" alt="Moto <?= $product['nom'] ?>">
             <p><?= $product['description'] ?></p>
             <div class="form__container row d-flex justify-content-center">
                 <form class="col-md-7 product__cta" action="product.php" method="POST">
                     <input type="hidden" name="productId" value="<?= $product['id'] ?>">
-                    <input class="mt-3 btn btn-warning" type="submit" value="Je le découvre">
+                    <input class="mt-3 btn btn-warning" type="submit" value="Je la découvre">
                 </form>
                 <form class="col-md-5 product__cta" action="cart.php" method="POST">
                     <input type="hidden" name="productId" value="<?= $product['id'] ?>">
                     <input class="mt-3 btn btn-warning" type="submit" value="Je l'adopte">
                 </form>
-                <?php echo "on affichera notre stock ici" ?>
+                <?php 
+                afficherStock($product);
+                ?>
             </div>
         </article>
 
     </section>
-<?php }
+<?php } }
 
 
 
@@ -164,7 +169,16 @@ function chaineAleatoire($length)
 
 /* affiche le stock d'un produit 3/10 - 20 min*/
 
+function afficherStock($product){
 
+   if ($product['stock'] < 1) { ?><h3 class="product__stock">Rupture de stock</h3>
+      <?php }
+     else if ($product['stock'] > 1) { ?><h3 class="product__stock"><?= $product['stock'] ?> motos en stock.</h3>
+      <?php } else
+      { ?>
+         <h3 class="product__stock"><?= $product['stock'] ?> moto en stock.</h3>
+      <?php } 
+}
 
 /* affiche le montant des frais de port sur la page de détail d'une commande - 4/10 - 30 min*/
 

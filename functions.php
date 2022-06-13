@@ -38,7 +38,11 @@ while ($nosarticles = $resultatarticles3->fetch()) {
 
 
 
-/* récuperation article selon son3I - 3/10 - 15 min  */
+/* récuperation article selon son id - 3/10 - 15 min  */
+
+if ($_POST['id']=="ok") {
+
+}
 
 /* on génére nos div produit de chaque gamme sur la page d'accueil */
 

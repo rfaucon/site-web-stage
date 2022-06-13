@@ -42,29 +42,31 @@ var_dump($articlesaccueil);
 
 /* on génére nos div produit de chaque gamme sur la page d'accueil */
 
-/* <section class="product col-md-3 text-center shadow p-3 mb-5 bg-white rounded">
+while (count($tableauarticles) > 0) {
+    $product = array_shift($tableauarticles); ?>
+    <section class="product col-md-3 text-center shadow p-3 mb-5 bg-white rounded">
 
-                    <article class="product__nameandprice">
-                        <h2 class="product__title">Ours <?= $product['nom'] ?></h2>
-                        <p><?= $product['prix'] ?>€</p>
-                        <img src="images/<?= $product['image'] ?>" alt="Ours en peluche en coton">
-                        <p><?= $product['description'] ?></p>
-                        <div class="form__container row d-flex justify-content-center">
-                            <form class="col-md-7 product__cta" action="product.php" method="POST">
-                                <input type="hidden" name="productId" value="<?= $product['id'] ?>">
-                                <input class="mt-3 btn btn-warning" type="submit" value="Je le découvre">
-                            </form>
-                            <form class="col-md-5 product__cta" action="cart.php" method="POST">
-                                <input type="hidden" name="productId" value="<?= $product['id'] ?>">
-                                <input class="mt-3 btn btn-warning" type="submit" value="Je l'adopte">
-                            </form>
-                            <?php displayStock($product) ?>
-                        </div>
-                    </article>
+        <article class="product__nameandprice">
+            <h2 class="product__title">Moto <?= $product['nom'] ?></h2>
+            <p><?= $product['prix'] ?>€</p>
+            <img src="images/<?= $product['image'] ?>" alt="Ours en peluche en coton">
+            <p><?= $product['description'] ?></p>
+            <div class="form__container row d-flex justify-content-center">
+                <form class="col-md-7 product__cta" action="product.php" method="POST">
+                    <input type="hidden" name="productId" value="<?= $product['id'] ?>">
+                    <input class="mt-3 btn btn-warning" type="submit" value="Je le découvre">
+                </form>
+                <form class="col-md-5 product__cta" action="cart.php" method="POST">
+                    <input type="hidden" name="productId" value="<?= $product['id'] ?>">
+                    <input class="mt-3 btn btn-warning" type="submit" value="Je l'adopte">
+                </form>
+                <?php echo "on affichera notre stock ici" ?>
+            </div>
+        </article>
 
-</section>
+    </section>
+<?php }
 
-*/
 
 
 /* récuperation article selon son ID - 3/10 - 15 min  */

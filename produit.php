@@ -1,8 +1,13 @@
 <?php
 include 'db.php';
+
 include 'functions.php';
 
-getHeader("Produit");
+if (isset($_POST['productId'])) {
+    $productId = $_POST['productId'];
+    $product = getArticleFromID($productId);
+
+getHeader($product['nom']);
 ?>
 
 
@@ -11,11 +16,9 @@ getHeader("Produit");
 
         <main class="productpage" id="main">
 
-            <?php if (isset($_POST['productId'])) {
-                $productId = $_POST['productId'];
-                $product = getArticleFromID($productId);
+            <?php 
                 singleProductPage($product);
-            }
+            
             ?>
 
         </main>

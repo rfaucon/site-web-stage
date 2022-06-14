@@ -1,0 +1,24 @@
+<?php
+
+include 'db.php';
+include 'functions.php';
+
+getHeader("Panier");
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<?php
+footer();
+?>

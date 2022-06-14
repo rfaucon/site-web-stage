@@ -72,6 +72,9 @@ if (!empty($_POST)) {
 <main class="mt-5 pt-5 container d-flex flex-column align-items-center justify-content-center">
         <h1>S'inscrire</h1>
         <?php if (!empty($errors)) : ?>
+
+            <!-- si tous les champs du formulaire ne sont pas remplis afficher que le formlaire contient des erreurs -->
+
             <div class="alert alert-danger">
                 <p>Le formulaire contient des erreurs.</p>
                 <ul>
@@ -82,57 +85,57 @@ if (!empty($_POST)) {
             <?php endif; ?>
             </div>
             <form class="d-flex flex-wrap justify-content-center align-items-center" action="" method="POST">
-
+                <!-- champ pour remplir le Pseudo -->
                 <div class="form-group col-md-5 m-3">
                     <label for="">Pseudo</label>
                     <input class="form-control" type="text" name="username" required>
                 </div>
-
+                 <!-- champ pour remplir le prénom -->
                 <div class="form-group col-md-5 m-3">
                     <label for="">Prénom</label>
                     <input class="form-control" type="text" name="first_name" required>
                 </div>
-
+                 <!-- champ pour remplir le nom -->
                 <div class="form-group col-md-5 m-3">
                     <label for="">Nom</label>
                     <input class="form-control" type="text" name="family_name" required>
                 </div>
-
+                <!-- champ pour remplir le le nom de rue -->
                 <div class="form-group col-md-5 m-3">
                     <label for="">Nom de rue</label>
                     <input type="text" class="form-control" name="street" minlength="2" maxlength="30" pattern="[A-Za-z -éàâêèç][^0-9]{2,30}" required>
                 </div>
-
+                <!-- champ pour remplir le numero de rue -->
                 <div class="form-group col-md-5 m-3">
                     <label for="">Numéro de rue</label>
                     <input type="text" class="form-control" name="number" minlength="1" maxlength="4" pattern="[0-9]{1,4}" required>
                 </div>
-
+                <!-- champ pour remplir le code postal -->
                 <div class="form-group col-md-5 m-3">
                     <label for="">Code postal</label>
                     <input type="text" class="form-control" name="zipcode" minlength="5" maxlength="5" pattern="[0-9]{5}" required>
                 </div>
-
+                <!-- champ pour remplir la ville -->
                 <div class="form-group col-md-5 m-3">
                     <label for="">Ville</label>
                     <input type="text" class="form-control" name="city" minlength="2" maxlength="30" pattern="[A-Za-z -éàâêèç][^0-9]{2,30}" required>
                 </div>
-
+                <!-- champ pour remplir le mail -->
                 <div class="form-group col-md-5 m-3">
                     <label for="">Email</label>
                     <input class="form-control" type="email" name="email" required>
                 </div>
-
+                <!-- champ pour remplir le mdp -->
                 <div class="form-group col-md-5 m-3">
                     <label for="">Mot de passe</label>
                     <input class="form-control" type="password" name="password" required>
                 </div>
-
+                <!-- champ pour remplir la confirmation du mdp -->
                 <div class="form-group col-md-5 m-3">
                     <label for="">Confirmez votre mot de passe</label>
                     <input class="form-control" type="password" name="password_confirm" required>
                 </div>
-
+                <!-- bouton pour confirmer l'inscription -->
                 <button type="submit" class="col-md-3 btn btn-primary mt-3">M'inscrire</button>
 
             </form>

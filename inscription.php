@@ -4,11 +4,11 @@ include 'db.php';
 include 'functions.php';
 
 getHeader("Inscription");
- // si le $_POST est différent de 
+ // on vient vérifier si $_post est diffférent de vide  
 if (!empty($_POST)) {
-    // opn définie la variable erreur dans un tableau 
+    // on initialise la variable errors et on lui attribue un tableau vide  
     $errors = array();
-    // si le champ pseudo est vide ou contient les caractères speciaux /^[a-zA-Z0-9_]+$/ alors afficher que le pseudo contient une erreur
+    // si le champ pseudo est vide ou si il ne contient pas les caractères spéciaux /^[a-zA-Z0-9_]+$/ alors afficher que le pseudo contient une erreur
     if (empty($_POST['username']) || !preg_match('/^[a-zA-Z0-9_]+$/', $_POST['username'])) {
         $errors['username'] = "Pseudo invalide, il ne peut être vide et ne peut pas contenir de caractères spéciaux";
     } else {
@@ -21,19 +21,19 @@ if (!empty($_POST)) {
             $errors['username'] = 'Ce pseudo est déjà utilisé';
         }
     }
-    // si le nom de la rue ne contient pas les caractères spéciaux suivants /^[A-Za-z -éàâêèç][^0-9]{2,30}+$/ alors afficher "Nom de rue invalide" 
+    // si le champ du nom de la rue est vide ou ne contient pas les caractères spéciaux suivants /^[A-Za-z -éàâêèç][^0-9]{2,30}+$/ alors afficher "Nom de rue invalide" 
     if (empty($_POST['street']) || !preg_match('/^[A-Za-z -éàâêèç][^0-9]{2,30}+$/', $_POST['street'])) {
         $errors['street'] = "Nom de rue invalide";
     }
-    // si le numero de la rue ne contient pas les caractères spéciaux suivants /^[0-9]{1,4}+$/ alors afficher "Numero de rue invalide" 
+    // si le champ du numero de la rue est vide ou ne contient pas les caractères spéciaux suivants /^[0-9]{1,4}+$/ alors afficher "Numero de rue invalide" 
     if (empty($_POST['number']) || !preg_match('/^[0-9]{1,4}+$/', $_POST['number'])) {
         $errors['number'] = "Numéro de rue invalide";
     }
-    // si le code postal ne contient pas les caractere suivant alors afficher "Code postal invalide"  
+    // si le champ du code postal est vide ou ne contient pas les caractere suivant alors afficher "Code postal invalide"  
     if (empty($_POST['zipcode']) || !preg_match('/^[0-9]{5}+$/', $_POST['zipcode'])) {
         $errors['zipcode'] = "Code postal invalide";
     }
-    // si le nom de la ville ne contient pas les caracteres suivants alors afficher  "La ville est incorrecte"
+    // si le champ du nom de la ville est vide ou ne contient pas les caracteres suivants alors afficher  "La ville est incorrecte"
     if (empty($_POST['city']) || !preg_match('/^[A-Za-z -éàâêèç][^0-9]{2,30}+$/', $_POST['city'])) {
         $errors['city'] = "La ville est incorrecte";
     }

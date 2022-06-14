@@ -60,12 +60,6 @@ while ($nosarticles = $resultatsrequetearticles->fetch()) {
 
 
 
-/* récuperation article selon son id - 3/10 - 15 min  */
-
-function getArticleFromId(){
-   
-}
-
 
 /* on génére nos div produit de chaque gamme sur la page d'accueil */
 
@@ -108,8 +102,8 @@ function divproduitaccueil()
 
 function getArticleFromID($id)
 {
-    global $allarticles;
-    $products = $allarticles;
+    global $listearticle;
+    $products = $listearticle;
     foreach ($products as $product) {
         if ($product['id'] == $id) {
             $selectedProduct = $product;
@@ -125,7 +119,7 @@ function getArticleFromID($id)
 function singleProductPage($product)
 { ?>
 
-    <section class=" mb-5 vh-100 headersection d-flex justify-content-evenly align-items-center flex-column">
+    <section class=" mb-5 vh-100 headersection d-flex justify-content-evenly align-items-center flex-column" style="background: url(<?="images/moto-par-id/{$product['id']}.webp"?>) no-repeat center;">
         <h1 class="headersection__title"><?= $product['nom'] ?></h1>
         <a href="#theproduct" class="btn btn-warning">Je le personnalise</a>
     </section>
@@ -144,7 +138,7 @@ function singleProductPage($product)
             <form class="col-md-5 product__cta" action="cart.php" method="POST">
                 <input type="hidden" name="productId" value="<?= $product['id'] ?>">
                 <input class="mt-3 btn btn-warning col-md-12" type="submit" value="Je l'adopte">
-                <?php displayStock($product) ?>
+                <?php afficherStock($product) ?>
             </form>
         </section>
     </main>
@@ -168,6 +162,29 @@ function creationPanier()
 
 /* on ajoute au panier en vérifiant que le panier existe, s'il existe puis si le produit est déjà présent dans le panier on augmente la quantité, sinon on ajoute le produit - 6/10 - 1h*/
 
+function footer(){?>
+   <footer class="footer row d-flex justify-content-center text-center bg-dark mt-5 pt-3 pb-3 text-white">
+        <h3 class="footer__h3">Esprit moto, la réference de la moto en France.</h3>
+    </footer>
+    <!-- script pour le menu de bootstrap -->
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script>
+        $(function() {
+            var navbarNav = $("#navbarNav");
+            navbarNav.on("click", "a", null, function() {
+                navbarNav.collapse('hide');
+            });
+        });
+    </script>
+
+    <!-- Script pour chargement de fontawesome-->
+    <script src="https://kit.fontawesome.com/a4bf076c8c.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <?php
+    }
 
 
 /* affichage des éléments de la page panier - 3/10 - 20 min */

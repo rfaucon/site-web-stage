@@ -21,23 +21,23 @@ if (!empty($_POST)) {
             $errors['username'] = 'Ce pseudo est déjà utilisé';
         }
     }
-    // si le champ du nom de la rue est vide ou ne contient pas les caractères spéciaux suivants /^[A-Za-z -éàâêèç][^0-9]{2,30}+$/ alors afficher "Nom de rue invalide" 
+    // si le champ du nom de la rue est vide ou ne contient pas les caractères spéciaux suivants /^[A-Za-z -éàâêèç][^0-9]{2,30}+$/ alors on ajoute une entrée a notre tableau d'erreur avec une paire clé valeur "Nom de rue invalide" 
     if (empty($_POST['street']) || !preg_match('/^[A-Za-z -éàâêèç][^0-9]{2,30}+$/', $_POST['street'])) {
         $errors['street'] = "Nom de rue invalide";
     }
-    // si le champ du numero de la rue est vide ou ne contient pas les caractères spéciaux suivants /^[0-9]{1,4}+$/ alors afficher "Numero de rue invalide" 
+    // si le champ du numero de la rue est vide ou ne contient pas les caractères spéciaux suivants /^[0-9]{1,4}+$/ alors on ajoute une entrée a notre tableau d'erreur avec une paire clé valeur "Numero de rue invalide" 
     if (empty($_POST['number']) || !preg_match('/^[0-9]{1,4}+$/', $_POST['number'])) {
         $errors['number'] = "Numéro de rue invalide";
     }
-    // si le champ du code postal est vide ou ne contient pas les caractere suivant alors afficher "Code postal invalide"  
+    // si le champ du code postal est vide ou ne contient pas les caractere suivant alors on ajoute une entrée a notre tableau d'erreur avec une paire clé valeur "Code postal invalide"  
     if (empty($_POST['zipcode']) || !preg_match('/^[0-9]{5}+$/', $_POST['zipcode'])) {
         $errors['zipcode'] = "Code postal invalide";
     }
-    // si le champ du nom de la ville est vide ou ne contient pas les caracteres suivants alors afficher  "La ville est incorrecte"
+    // si le champ du nom de la ville est vide ou ne contient pas les caracteres suivants alors on ajoute une entrée a notre tableau d'erreur avec une paire clé valeur "La ville est incorrecte"
     if (empty($_POST['city']) || !preg_match('/^[A-Za-z -éàâêèç][^0-9]{2,30}+$/', $_POST['city'])) {
         $errors['city'] = "La ville est incorrecte";
     }
-    // si le champ mail est vide ou n'est pas valide au format d'adress mail alors afficher "L'adresse email est incorrecte"
+    // si le champ mail est vide ou n'est pas valide au format d'adress mail alors on ajoute une entrée a notre tableau d'erreur avec une paire clé valeur "L'adresse email est incorrecte"
     if (empty($_POST['email']) || !filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
         $errors['email'] = "L'adresse email est incorrecte";
     } else {
@@ -46,7 +46,7 @@ if (!empty($_POST)) {
         $query->execute([$_POST['email']]);
         $user = $query->fetch();
         if ($user) {
-            // si le mail est déjà connu de la base de données alors afficher 'Cet email est déjà associé à un autre compte'
+            // si le mail est déjà connu de la base de données alors on ajoute une entrée a notre tableau d'erreur avec une paire clé valeur 'Cet email est déjà associé à un autre compte'
             $errors['email'] = 'Cet email est déjà associé à un autre compte';
         }
     }

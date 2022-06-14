@@ -198,7 +198,7 @@ function getHeader($nomdemapage) { global $nomdusite;  ?>
                 <div class="col-md-9 collapse navbar-collapse d-flex justify-content-end" id="monMenu">
                     <ul class="navbar-nav d-flex justify-content-center align-items-center flex-row">
 
-                            <li class="p-2 nav-item"><a class="nav-link" href="compte.php">Votre compte</a></li>
+                            <li class="p-2 nav-item"><a class="nav-link" href="compte.php">Votre compte </a></li>
                             <li class="p-2 nav-item"><a class="nav-link" href="deconnexion.php">Se déconnecter</a></li>
 
                             <li class="p-2 nav-item"><a class="nav-link" href="inscription.php">Inscription</a></li>
